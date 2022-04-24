@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+<template id="partner_docs_list" name="partner Docs list">
+    <t t-if="not docs">
+        <div class="col-12">
+            <div class="h2 mb-3">No Service found.</div>
+        </div>
+    </t>
+
+    <div t-foreach="docs" t-as="doc" t-attf-class="'card col-md-6 col-lg-4 mb-4'" style="width: 30%;">
+        <a t-attf-href="/partner_doc/{{doc.id}}" class="text-decoration-none">
+                <span t-esc="doc.image_512" t-options="{'widget': 'image', 'preview_image': 'image_512', 'itemprop': 'image'}" class="card-img-top"/>
+                <div class="card-body">
+                    <h5 class="card-title" t-esc="doc.name"></h5>
+                    <span class="card-subtitle mb-2 " t-esc="doc.subtitle"></span>
+                </div>
+        </a>
+    </div>
+ 
+   
+</template>
+
+</odoo>

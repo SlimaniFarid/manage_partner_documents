@@ -1,0 +1,26 @@
+<odoo>
+<data>
+  
+
+    <menuitem id="partner_doc_menu_root" 
+              name="Partner Documents" 
+              sequence="10"
+              web_icon="manage_partner_documents,static/description/icon.jpg"  
+              />
+    
+    <menuitem id="partner_doc_menu_request" 
+              name="Partner Documents Request" 
+              action="res_partner_doc_request_action"  
+              parent="partner_doc_menu_root"
+              sequence="10"/>
+    
+    <menuitem id="partner_doc_menu" 
+              name="Partner Documents Model" 
+              action="res_partner_doc_action"  
+              parent="partner_doc_menu_root"
+              sequence="20"/>
+    
+
+
+</data>
+</odoo>

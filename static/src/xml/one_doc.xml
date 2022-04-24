@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="manage_internal_documentation.index">
+        <div class="content">
+       
+        <h1 class="text-center" style="background: #DEB887; padding: 8px; margin-bottom: 4%;" t-esc="doc_name"></h1>
+
+        <t t-set="nb_items" t-value="0"/>
+        <div class="row">
+
+
+            <div class="col-3">  
+                <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                    <div class="card">
+                        <div class="card-header">
+                            items
+                        </div>
+                        <div class="list-group list-group-flush">
+                            <t t-foreach="items" t-as="item">
+                                <t t-if="nb_items==0">
+                                    <a  style="cursor: pointer;" class="list-group-item nav-link item active" t-att-id="'v-pills-'+item[0]+'-tab'" data-toggle="pill" t-att-data-target="'#v-pills-'+item[0]" role="tab" t-att-aria-controls="'v-pills-'+item[0]" aria-selected="true"  t-esc="item[1]"/>
+                                </t>
+                                <t t-if="nb_items!=0">
+                                    <a  style="cursor: pointer;" class="list-group-item nav-link item" t-att-id="'v-pills-'+item[0]+'-tab'" data-toggle="pill" t-att-data-target="'#v-pills-'+item[0]" role="tab" t-att-aria-controls="'v-pills-'+item[0]" aria-selected="true" t-esc="item[1]" />
+                                </t>
+                                <t t-set="nb_items" t-value="nb_items+1"/>
+                            </t>
+                        </div>    
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-9 tab_content" style="min-height:86vh;">
+                <div class="tab-content" id="v-pills-tabContent">
+                    <t t-set="nb_items" t-value="0"/>
+                    <t t-foreach="items" t-as="item">
+                        <t t-if="nb_items==0">
+                            <div  class="tab-pane show  active" t-att-id="'v-pills-'+item[0]" role="tabpanel" t-att-aria-labelledby="'v-pills-'+item[0]+'-tab'">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title" t-esc="item[1]"/>
+                                        <t t-raw="item[2]"/>
+                                    </div>
+                                </div>
+                            </div>    
+                        </t>
+
+                        <t t-if="nb_items!=0">
+                            <div  class="tab-pane" t-att-id="'v-pills-'+item[0]" role="tabpanel" t-att-aria-labelledby="'v-pills-'+item[0]+'-tab'">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title" t-esc="item[1]"/>
+                                        <t t-raw="item[2]"/>
+                                    </div>
+                                </div>
+                            </div>                            
+                        </t>
+                        <t t-set="nb_items" t-value="nb_items+1"/>
+                    </t>
+                       
+                </div>
+            </div>  
+           
+
+
+
+        </div>    
+       
+
+    </div>
+    </t>
+</templates>        

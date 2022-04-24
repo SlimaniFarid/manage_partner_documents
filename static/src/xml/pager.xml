@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+ 
+    <t t-name="manage_internal_documentation.pager">
+        <nav aria-label="...">
+            <ul class="pagination" t-if="data['pages'].length &gt; 1">
+                <li t-if="data['page'] != data['page_previous']"  class="page-item">
+                    <a class="page-link" href="#" tabindex="-1">Previous</a>
+                </li>
+                <li t-if="data['page'] == data['page_previous']"  class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1">Previous</a>
+                </li>
+                <t t-foreach="data['pages']" t-as="page">
+                    <t t-if="page==data['page']">
+                        <li class="page-item active">
+                            <a class="page-link" href="#"><t t-esc="page"/></a>
+                        </li>
+                    </t>
+                    <t t-if="page!=data['page']">
+                        <li class="page-item ">
+                            <a class="page-link" href="#"><t t-esc="page"/></a>
+                        </li>
+                    </t>
+
+                </t>
+                <li t-if="data['page'] != data['page_next']" class="page-item">
+                    <a class="page-link" href="#">Next</a>
+                </li>
+                <li t-if="data['page'] == data['page_next']" class="page-item disabled">
+                    <a class="page-link" href="#">Next</a>
+                </li>
+            </ul>
+        </nav>
+    </t>
+
+
+
+</templates>        

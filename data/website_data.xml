@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- <data noupdate="1">
+        <record id="menu_partner_doc" model="website.menu">
+            <field name="name">partner Documents</field>
+            <field name="url">/partner_docs</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence" type="int">30</field>
+        </record>
+    </data> -->
+</odoo>        

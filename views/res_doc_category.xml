@@ -1,0 +1,27 @@
+<odoo>
+    <data>  
+        
+
+        <record id="res_doc_category_tree" model="ir.ui.view">
+            <field name="name">res.doc.category.tree</field>
+            <field name="model">res.doc.category</field>
+            <field name="arch" type="xml">
+                <tree string="Categories of documents" editable="bottom">
+                     <field name="name" />     
+                </tree>
+            </field>
+        </record>
+
+       
+
+        <record id="res_doc_category_action" model="ir.actions.act_window">
+            <field name="name">Categories of documents</field>
+            <field name="res_model">res.doc.category</field>
+            <field name="view_mode">tree</field>
+        </record>
+
+        
+       
+    
+    </data>
+</odoo>    

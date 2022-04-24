@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<template id="registration_attendee_details" name="Registration Attendee Details">
+    <t t-call="website.layout">
+    <div id="modal_attendees_registration" class="" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <form id="attendee_registration" t-attf-action="/partner_doc/#{slug(doc)}/registration/confirm" method="post" class="js_website_submit_form">
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                <div class="modal-content">
+                    <div class="modal-header align-items-center">
+                        <h4 class="modal-title">Registration</h4>
+                    </div>
+                    <div class="modal-body bg-light border-bottom">
+                        <div class="row">
+                            <div class="col-lg-4 my-2">
+                                <label>Last name</label>
+                                <input class="form-control" type="text" name="lastname" required="This field is required"
+                                    t-att-value="default_first_attendee.get('lastname', '')"/>
+                            </div>
+                            <div class="col-lg-4 my-2">
+                                <label>Last name (2)</label>
+                                <input class="form-control" type="text" name="lastname2" required="This field is required"
+                                    t-att-value="default_first_attendee.get('lastname2', '')"/>
+                            </div>
+                            <div class="col-lg-4 my-2">
+                                <label>First name</label>
+                                <input class="form-control" type="text" name="firstname" required="This field is required"
+                                    t-att-value="default_first_attendee.get('firstname', '')"/>
+                            </div>
+
+                            <div class="col-lg-4 my-2">
+                                <label>Email</label>
+                                <input class="form-control" type="email" name="email" required="This field is required"
+                                    t-att-value="default_first_attendee.get('email', '')"/>
+                            </div>
+                            <div class="col-lg-4 my-2">
+                                <label>Phone <small>(Optional)</small></label>
+                                <input class="form-control" type="tel" name="phone"
+                                    t-att-value="default_first_attendee.get('phone', '')"/>
+                            </div>
+                       
+                          
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 my-2">
+                                <label>Street</label>
+                                <input class="form-control" type="text" name="street"
+                                    t-att-value="default_first_attendee.get('street', '')"/>
+                            </div>
+                            <div class="col-lg-6 my-2">
+                                <label>Street 2</label>
+                                <input class="form-control" type="text" name="street2"
+                                    t-att-value="default_first_attendee.get('street2', '')"/>
+                            </div>
+                            <div class="col-lg-4 my-2">
+                                <label>Zip Code</label>
+                                <input class="form-control" type="text" name="zip"
+                                    t-att-value="default_first_attendee.get('zip', '')"/>
+                            </div>
+                            <div class="col-lg-4 my-2">
+                                <label>City</label>
+                                <input class="form-control" type="text" name="city"
+                                    t-att-value="default_first_attendee.get('city', '')"/>
+                            </div>
+                            <div class="col-lg-4 my-2">
+                                <label>City</label>
+                                <input class="form-control" type="text" name="city"
+                                    t-att-value="default_first_attendee.get('city', '')"/>
+                            </div>
+                            <div class="col-lg-4 my-2">
+                                <label>Country</label>
+                                <select name="country_id" t-attf-class="form-control">
+                                    <t t-foreach="default_first_attendee.get('countries',[])" t-as="c">
+                                        <option t-att-value="c.id" t-att-selected="c.id == (country and country.id or -1)">
+                                            <t t-esc="c.name" />
+                                        </option>
+                                    </t>
+                                </select>
+                            </div>
+                            <div class="col-lg-4 my-2">
+                                <label>State / Province</label>
+                                <select name="state_id" t-attf-class="form-control" data-init="1">
+                                    <t t-foreach="default_first_attendee.get('states',[])" t-as="s">
+                                        <option t-att-value="s.id">
+                                            <t t-esc="s.name" />
+                                        </option>
+                                    </t>
+                                </select>
+                            </div>
+                            <div class="col-lg-4 my-2">
+                                <label>Building N°</label>
+                                <input class="form-control" type="text" name="building_no"
+                                    t-att-value="default_first_attendee.get('building_no', '')"/>
+                            </div>
+                            <div class="col-lg-4 my-2">
+                                <label>Floor N°</label>
+                                <input class="form-control" type="text" name="floor_no"
+                                    t-att-value="default_first_attendee.get('floor_no', '')"/>
+                            </div>
+                            <div class="col-lg-4 my-2">
+                                <label>Place of birth</label>
+                                <input class="form-control" type="text" name="Place_of_birth"
+                                    t-att-value="default_first_attendee.get('floorPlace_of_birth', '')"/>
+                            </div>
+                            <div class="col-lg-4 my-2">
+                                <label>Family situation</label>
+                                <select class="form-control o_website_form_input" name="family_situation" id="family_situation">
+                                    <option></option>
+                                    <option value="single">Single</option>
+                                    <option value="married">Married</option>
+                                    <option value="divorced">Divorced</option>
+                                    <option value="widow">Widow / Widower</option>
+                                    <option value="separated">Separated</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-4 my-2">
+                                <label>Profession</label>
+                                <select class="form-control o_website_form_input" name="Profession" id="Profession" requireddd="1">
+                                    <option></option>
+                                    <option value="entrepreneur">Entrepreneur</option>
+                                    <option value="student">Student</option>
+                                    <option value="employee">Employee</option>
+                                    <option value="sector">Sector</option>
+                                    <option value="retired">Retired</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-4 my-2">
+                                <label>Spouses name</label>
+                                <input class="form-control" type="text" name="Spouses_name"
+                                    t-att-value="default_first_attendee.get('Spouses_name', '')"/>
+                            </div>
+                            <div class="col-lg-4 my-2">
+                                <label>Fathers name</label>
+                                <input class="form-control" type="text" name="Fathers_name"
+                                    t-att-value="default_first_attendee.get('Fathers_name', '')"/>
+                            </div>
+                            <div class="col-lg-4 my-2">
+                                <label>Mother's name</label>
+                                <input class="form-control" type="text" name="mothers_name"
+                                    t-att-value="default_first_attendee.get('mothers_name', '')"/>
+                            </div>
+                            <div class="col-lg-4 my-2">
+                                <label>Document type</label>
+                                <input class="form-control" type="text" name="document_type"
+                                    t-att-value="default_first_attendee.get('document_type', '')"/>
+                            </div>
+                            <div class="col-lg-4 my-2">
+                                <label>Reasons</label>
+                                <select class="form-control o_website_form_input" name="reasons" id="reasons" requireddd="1">
+                                    <option></option>
+                                    <option value="For_economic_interests">For economic interests</option>
+                                    <option value="for_professional_interests">For professional interests</option>
+                                    <option value="for_social_interests">For social interests</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-4 my-2">
+                                <label>Specify</label>
+                                <select class="form-control o_website_form_input" name="specify" id="specify" requireddd="1">
+                                    <option></option>
+                                    <option value="company_creation">Company creation</option>
+                                    <option value="studies">Studies</option>
+                                    <option value="buy_hous">Buy hous</option>
+                                    <option value="open_bank_account">Open bank account</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-4 my-2">
+                                <label>Place of presentation</label>
+                                <select class="form-control o_website_form_input" name="place_of_presentation" id="place_of_presentation" requireddd="1">
+                                    <option></option>
+                                    <option value="immigration_Office">Immigration office</option>
+                                    <option value="police_station">Police station</option>
+                                    <option value="consular_office">Consular office</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-4 my-2">
+                                <label>Passport number</label>
+                                <input class="form-control" type="text" name="passport_number"
+                                    t-att-value="default_first_attendee.get('passport_number', '')"/>
+                            </div>
+                            <div class="col-lg-4 my-2">
+                                <label>Delivered by</label>
+                                <input class="form-control" type="text" name="delivered_by"
+                                    t-att-value="default_first_attendee.get('delivered_by', '')"/>
+                            </div>
+                            <div class="col-lg-4 my-2">
+                                <label>Passport delivery date</label>
+                                <input class="form-control" type="date" name="Passport_delivery_date"
+                                    t-att-value="default_first_attendee.get('Passport_delivery_date', '')"/>
+                            </div>
+                            <div class="col-lg-4 my-2">
+                                <label>Passport expiration date</label>
+                                <input class="form-control" type="date" name="Passport_expiration_date"
+                                    t-att-value="default_first_attendee.get('Passport_expiration_date', '')"/>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                       
+                    
+                    <div class="modal-footer border-0 justify-content-between">
+                        <button type="submit" class="btn btn-primary">Continue</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    </t>
+</template>
+</odoo>
